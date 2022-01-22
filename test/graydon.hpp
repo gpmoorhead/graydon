@@ -117,7 +117,15 @@ void TestTumor()
 		p_cycle_model->SetEquilibriumVolume(1.0);
 
     p_cycle_model->SetTransitCellG1Duration(G1(gen));
-    p_cycle_model->SetSDuration(S(gen));
+    float s_value = S(gen);
+    if(s_value < 0)
+    {
+      p_cycle_model->SetSDuration(0);
+    }
+    else
+    {
+      p_cycle_model->SetSDuration(s_value);
+    }
     p_cycle_model->SetG2Duration(G2(gen));
     p_cycle_model->SetMDuration(M(gen));
 		// p_cycle_model->SetTransitCellG1Duration(-10.7 * log(1.0001 - (RandomNumberGenerator::Instance()->ranf())));
